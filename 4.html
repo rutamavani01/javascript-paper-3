@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+
+<body>
+    <center>
+        <table class="table">
+            <thead class="thead-dark">
+                <tr class="table-primary">
+                    <th>id</th>
+                    <th>name</th>
+                    <th>email</th>
+                    <th>phone</th>
+                    <th>city</th>
+                    <th>salary</th>
+                    <th>degi</th>
+                    <th>dep</th>
+                </tr>
+            </thead>
+            <tbody class="thead-light" id="record"></tbody>
+            <br><br>
+        </table> <br>
+
+        <table border="1">
+            <h3>City Wise filter record</h3>
+
+            <input type="button" value="surat" onclick="filterCity('surat')"></input>
+            <input type="button" value="vadodara" onclick="filterCity('vadodara')"></input>
+            <input type="button" value="vapi" onclick="filterCity('vapi')"></input>
+            <input type="button" value="rajkot" onclick="filterCity('rajkot')"></input>
+            <br><br>
+            <thead class="thead-dark">
+                <tr>
+                    <th>id</th>
+                    <th>name</th>
+                    <th>email</th>
+                    <th>phone</th>
+                    <th>city</th>
+                    <th>salary</th>
+                    <th>degi</th>
+                    <th>dep</th>
+                </tr>
+            </thead>
+            <tbody id="filteredTable"></tbody>
+        </table> <br><br>
+
+        <table border="1">
+            <h3>salary wise filter record</h3>
+            <thead class="thead-dark">
+                <tr>
+                    <th>id</th>
+                    <th>name</th>
+                    <th>email</th>
+                    <th>phone</th>
+                    <th>city</th>
+                    <th>salary</th>
+                    <th>degi</th>
+                    <th>dep</th>
+                </tr>
+            </thead>
+            <input type="button" value=" 20000" onclick="salaryFilter(20000)"></input>
+            <input type="button" value=" 22000" onclick="salaryFilter(22000)"></input>
+            <input type="button" value=" 25000" onclick="salaryFilter(25000)"></input>
+            <input type="button" value=" 30000" onclick="salaryFilter(30000)"></input>
+            <br><br>
+            <tbody id="salaryTable">
+            </tbody>
+        </table>
+        <br><br>
+
+        <table border="1">
+            <h3> dep wise filter record</h3>
+            <thead class="thead-dark">
+                <tr>
+                    <th>id</th>
+                    <th>name</th>
+                    <th>email</th>
+                    <th>phone</th>
+                    <th>city</th>
+                    <th>salary</th>
+                    <th>degi</th>
+                    <th>dep</th>
+                </tr>
+            </thead>
+            <input type="button" value=" webdesign" onclick="depFilter('webdesign')"></input>
+            <input type="button" value=" bde" onclick="depFilter('bde')"></input>
+            <input type="button" value=" ui/ux" onclick="depFilter('ui/ux')"></input>
+            <input type="button" value=" programming" onclick="depFilter('programming')"></input>
+            <br> <br>
+            <tbody id="depTable"></tbody>
+        </table>
+        <br><br>
+        <table border="1">
+            <h3> salary 20k to 35000 and city is surat filter record</h3>
+            <thead class="thead-dark">
+                <tr>
+                    <th>id</th>
+                    <th>name</th>
+                    <th>email</th>
+                    <th>phone</th>
+                    <th>city</th>
+                    <th>salary</th>
+                    <th>degi</th>
+                    <th>dep</th>
+                </tr>
+            </thead>
+            <input type="button" value=" filter" onclick="salaryNcityFilter(20000,'surat')"></input> <br> <br>
+            <tbody id="salaryNcityTable"></tbody>
+        </table> <br><br>
+
+        <table border="1">
+            <h3>degi senior wise sum salary</h3>
+            <thead class="thead-dark">
+                <tr>
+                    <th>id</th>
+                    <th>name</th>
+                    <th>email</th>
+                    <th>phone</th>
+                    <th>city</th>
+                    <th>salary</th>
+                    <th>degi</th>
+                    <th>dep</th>
+                </tr>
+            </thead>
+            <input type="button" value=" filter" onclick="salarySumFilter('senior')"></input> <br> <br>
+
+            <tbody id="salarySumTable"></tbody>
+        </table>
+        <h6 id="sum"></h6>
+
+</body>
+
+
+<script type="text/javascript">
+    let record = [
+        {
+            id: 1,
+            name: "ashish",
+            email: "ashu@gmail.com",
+            phone: "1121212",
+            city: "surat",
+            salary: 20000,
+            degi: "senior",
+            dep: "programming",
+        },
+        {
+            id: 2,
+            name: "hari",
+            email: "hari@gmail.com",
+            phone: "5454545",
+            city: "surat",
+            salary: 22000,
+            degi: "junior",
+            dep: "ui/ux",
+        },
+        {
+            id: 3,
+            name: "raj",
+            email: "raj@gmail.com",
+            phone: "454545",
+            city: "vadodara",
+            salary: 25000,
+            degi: "junior",
+            dep: "bde",
+        },
+        {
+            id: 4,
+            name: "deep",
+            email: "deep@gmail.com",
+            phone: "565656",
+            city: "vapi",
+            salary: 30000,
+            degi: "tl",
+            dep: "webdesign",
+        },
+        {
+            id: 5,
+            name: "jay",
+            email: "jay@gmail.com",
+            phone: "5565656",
+            city: "rajkot",
+            salary: 20000,
+            degi: "senior",
+            dep: "programming",
+        },
+        {
+            id: 6,
+            name: "ajay",
+            email: "ajay@gmail.com",
+            phone: "5565656",
+            city: "vapi",
+            salary: 25000,
+            degi: "manager",
+            dep: "ui/ux",
+        }
+    ]
+
+    const viewData = () => {
+        let value = record;
+        let tbl = "";
+
+        value.map((v, index) => {
+            const { id, name, email, phone, city, salary, degi, dep } = v;
+            tbl +=
+                `
+                <tr>
+                    <td>${id}</td>    
+                    <td>${name}</td>    
+                    <td>${email}</td>    
+                    <td>${phone}</td>    
+                    <td>${city}</td>    
+                    <td>${salary}</td>    
+                    <td>${degi}</td>    
+                    <td>${dep}</td>    
+                </tr>
+            `
+        })
+        document.getElementById('record').innerHTML = tbl;
+    }
+    viewData();
+
+    const filterCity = (city) => {
+        const filteredTable = record.filter(v => v.city === city);
+
+        let tbl = "";
+        filteredTable.forEach(v => {
+            const { id, name, email, phone, city, salary, degi, dep } = v;
+            tbl +=
+                `
+                <tr>
+                    <td>${id}</td>    
+                    <td>${name}</td>    
+                    <td>${email}</td>    
+                    <td>${phone}</td>    
+                    <td>${city}</td>    
+                    <td>${salary}</td>    
+                    <td>${degi}</td>    
+                    <td>${dep}</td>    
+                </tr>
+            `
+        })
+        document.getElementById('filteredTable').innerHTML = tbl;
+    }
+
+    const salaryFilter = (salary) => {
+        const salaryTable = record.filter(v => v.salary === salary);
+
+        let tbl = "";
+        salaryTable.forEach(v => {
+            const { id, name, email, phone, city, salary, degi, dep } = v;
+            tbl +=
+                `
+                <tr>
+                    <td>${id}</td>    
+                    <td>${name}</td>    
+                    <td>${email}</td>    
+                    <td>${phone}</td>    
+                    <td>${city}</td>    
+                    <td>${salary}</td>    
+                    <td>${degi}</td>    
+                    <td>${dep}</td>    
+                </tr>
+            `
+        })
+        document.getElementById('salaryTable').innerHTML = tbl;
+    }
+
+    const depFilter = (dep) => {
+        const depTable = record.filter(v => v.dep === dep);
+
+
+        document.getElementById('depTable').innerHTML = tbl;
+    }
+
+    const salaryNcityFilter = (salary, city) => {
+        const salaryNcityTable = record.filter(v => v.salary >= salary && v.salary <= 35000 && v.city === city)
+
+        let tbl = "";
+        salaryNcityTable.forEach(v => {
+            const { id, name, email, phone, city, salary, degi, dep } = v;
+            tbl +=
+                `
+                <tr>
+                    <td>${id}</td>    
+                    <td>${name}</td>    
+                    <td>${email}</td>    
+                    <td>${phone}</td>    
+                    <td>${city}</td>    
+                    <td>${salary}</td>    
+                    <td>${degi}</td>    
+                    <td>${dep}</td>    
+                </tr>
+            `
+        })
+        document.getElementById('salaryNcityTable').innerHTML = tbl;
+    }
+
+    const salarySumFilter = (degi) => {
+        const salarySumTable = record.filter(v => v.degi === degi);
+
+        let tbl = "";
+        let sum = 0;
+        salarySumTable.forEach(v => {
+            const { id, name, email, phone, city, salary, degi, dep } = v;
+            sum += salary;
+            tbl +=
+                `
+                <tr>
+                    <td>${id}</td>    
+                    <td>${name}</td>    
+                    <td>${email}</td>    
+                    <td>${phone}</td>    
+                    <td>${city}</td>    
+                    <td>${salary}</td>    
+                    <td>${degi}</td>    
+                    <td>${dep}</td>    
+                </tr>
+            `
+        })
+
+        document.getElementById('salarySumTable').innerHTML = tbl;
+        document.getElementById('sum').innerHTML = sum;
+    }
+
+
+</script>
